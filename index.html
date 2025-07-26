@@ -12,6 +12,7 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f3f4f6; /* Warna latar belakang abu-abu muda */
+            overflow: hidden; /* Mencegah gulir saat sidebar terbuka */
         }
         /* Custom scrollbar for better aesthetics */
         ::-webkit-scrollbar {
@@ -31,14 +32,24 @@
         }
     </style>
 </head>
-<body class="flex h-screen overflow-hidden">
+<body class="flex h-screen">
+
+    <!-- Overlay untuk mobile, muncul saat sidebar terbuka -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden"></div>
 
     <!-- Sidebar Navigasi -->
-    <aside class="w-64 bg-gradient-to-br from-blue-600 to-blue-800 text-white p-6 flex flex-col shadow-lg">
-        <div class="text-2xl font-bold mb-8 text-center">
-            Dashboard Pembelajaran
+    <aside id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-gradient-to-br from-blue-600 to-blue-800 text-white p-6 flex flex-col shadow-lg
+                  transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out z-50">
+        <div class="flex justify-between items-center mb-8">
+            <div class="text-2xl font-bold text-center flex-grow">
+                Dashboard
+            </div>
+            <!-- Tombol Tutup Sidebar untuk Mobile -->
+            <button id="close-sidebar-btn" class="text-white md:hidden focus:outline-none focus:ring-2 focus:ring-blue-400 rounded-full p-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
         </div>
-        <nav class="flex-1">
+        <nav class="flex-1 overflow-y-auto">
             <ul>
                 <li class="mb-4">
                     <button id="menu-materi" class="w-full text-left py-3 px-4 rounded-lg hover:bg-blue-700 transition duration-200 flex items-center space-x-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
@@ -66,37 +77,43 @@
     </aside>
 
     <!-- Konten Utama -->
-    <main class="flex-1 p-8 overflow-y-auto bg-gray-100">
-        <!-- Header Konten -->
-        <header class="bg-white rounded-xl shadow-md p-6 mb-8">
-            <h1 id="content-title" class="text-3xl font-bold text-gray-800">Selamat Datang di Dashboard Pembelajaran!</h1>
-            <p id="content-description" class="text-gray-600 mt-2">Pilih menu di samping untuk memulai.</p>
+    <div class="flex-1 flex flex-col md:ml-64"> <!-- Tambahkan margin kiri untuk desktop -->
+        <!-- Header Utama (untuk mobile dan desktop) -->
+        <header class="bg-white rounded-xl shadow-md p-4 md:p-6 mb-4 md:mb-8 flex items-center sticky top-0 z-30 w-full">
+            <!-- Tombol Hamburger untuk Mobile -->
+            <button id="hamburger-btn" class="text-gray-600 md:hidden focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full p-2 mr-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+            <h1 id="content-title" class="text-xl md:text-3xl font-bold text-gray-800 flex-grow">Selamat Datang di Dashboard Pembelajaran!</h1>
+            <p id="content-description" class="text-gray-600 mt-2 md:mt-0 hidden md:block">Pilih menu di samping untuk memulai.</p>
         </header>
 
-        <!-- Area Konten Dinamis -->
-        <div id="content-area" class="bg-white rounded-xl shadow-md p-6 min-h-[calc(100vh-200px)]">
-            <!-- Konten akan dimuat di sini oleh JavaScript -->
-            <p class="text-gray-500">Gunakan menu navigasi di sisi kiri untuk mengakses materi, diskusi, dan quiz.</p>
-            <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Contoh Kartu Informasi -->
-                <div class="bg-blue-50 p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-semibold text-blue-700 mb-2">Materi Terbaru</h3>
-                    <p class="text-gray-700">Infografis "Sejarah Teknologi Informasi" baru saja ditambahkan.</p>
-                    <button class="mt-4 text-blue-600 hover:underline">Lihat Sekarang</button>
-                </div>
-                <div class="bg-green-50 p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-semibold text-green-700 mb-2">Quiz Mendatang</h3>
-                    <p class="text-gray-700">Quiz Bab 3 akan dibuka pada tanggal 28 Juli 2025.</p>
-                    <button class="mt-4 text-green-600 hover:underline">Detail</button>
-                </div>
-                <div class="bg-purple-50 p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-semibold text-purple-700 mb-2">Pengumuman</h3>
-                    <p class="text-gray-700">Perhatikan jadwal diskusi kelompok minggu ini.</p>
-                    <button class="mt-4 text-purple-600 hover:underline">Baca Selengkapnya</button>
+        <main class="flex-1 p-4 md:p-8 overflow-y-auto bg-gray-100">
+            <!-- Area Konten Dinamis -->
+            <div id="content-area" class="bg-white rounded-xl shadow-md p-4 md:p-6 min-h-[calc(100vh-160px)] md:min-h-[calc(100vh-200px)]">
+                <!-- Konten akan dimuat di sini oleh JavaScript -->
+                <p class="text-gray-500">Gunakan menu navigasi di sisi kiri untuk mengakses materi, diskusi, dan quiz.</p>
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Contoh Kartu Informasi -->
+                    <div class="bg-blue-50 p-6 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-semibold text-blue-700 mb-2">Materi Terbaru</h3>
+                        <p class="text-gray-700">Infografis "Sejarah Teknologi Informasi" baru saja ditambahkan.</p>
+                        <button class="mt-4 text-blue-600 hover:underline">Lihat Sekarang</button>
+                    </div>
+                    <div class="bg-green-50 p-6 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-semibold text-green-700 mb-2">Quiz Mendatang</h3>
+                        <p class="text-gray-700">Quiz Bab 3 akan dibuka pada tanggal 28 Juli 2025.</p>
+                        <button class="mt-4 text-green-600 hover:underline">Detail</button>
+                    </div>
+                    <div class="bg-purple-50 p-6 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-semibold text-purple-700 mb-2">Pengumuman</h3>
+                        <p class="text-gray-700">Perhatikan jadwal diskusi kelompok minggu ini.</p>
+                        <button class="mt-4 text-purple-600 hover:underline">Baca Selengkapnya</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </main>
+        </main>
+    </div>
 
     <script>
         // Mendapatkan elemen-elemen DOM
@@ -108,15 +125,49 @@
         const contentDescription = document.getElementById('content-description');
         const contentArea = document.getElementById('content-area');
 
+        // Elemen-elemen baru untuk responsivitas mobile
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const closeSidebarBtn = document.getElementById('close-sidebar-btn');
+
         // URL WEB APP GOOGLE APPS SCRIPT ANDA
-        // Ini adalah URL yang Anda dapatkan setelah mendeploy Apps Script sebagai Web App.
-        const appsScriptWebAppLink = 'https://script.google.com/macros/s/AKfycbyzWlJo_dPugZbocyOIG_cXxQ8FNqTbCs3r7dpR33B0pVBAjLrBYKHC8dtibEXVTQoe-w/exec';
+        const appsScriptWebAppLink = 'https://script.google.com/macros/s/AKfycbx7ne4GE3R19QIVaT7P24AXq3_pU4d0_yj0KxZ9W0FXbcPQigW62a8d8-sA52A_GR3oqg/exec';
+
+        // Fungsi untuk membuka sidebar
+        function openSidebar() {
+            sidebar.classList.remove('-translate-x-full');
+            sidebarOverlay.classList.remove('hidden');
+        }
+
+        // Fungsi untuk menutup sidebar
+        function closeSidebar() {
+            sidebar.classList.add('-translate-x-full');
+            sidebarOverlay.classList.add('hidden');
+        }
+
+        // Event Listeners untuk responsivitas mobile
+        hamburgerBtn.addEventListener('click', openSidebar);
+        closeSidebarBtn.addEventListener('click', closeSidebar);
+        sidebarOverlay.addEventListener('click', closeSidebar); // Menutup sidebar saat mengklik overlay
+
+        // Menutup sidebar jika ukuran layar berubah ke desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) { // md breakpoint in Tailwind
+                closeSidebar(); // Pastikan sidebar tertutup di tampilan mobile saat beralih ke desktop
+            }
+        });
 
         // Fungsi untuk memuat konten
         function loadContent(menuId) {
             let title = '';
             let description = '';
             let htmlContent = '';
+
+            // Tutup sidebar setelah memilih menu di mobile
+            if (window.innerWidth < 768) {
+                closeSidebar();
+            }
 
             switch (menuId) {
                 case 'materi':
@@ -269,14 +320,17 @@
                             <div class="bg-blue-50 p-6 rounded-lg shadow-sm">
                                 <h3 class="text-xl font-semibold text-blue-700 mb-2">Materi Terbaru</h3>
                                 <p class="text-gray-700">Infografis "Sejarah Teknologi Informasi" baru saja ditambahkan.</p>
+                                <button onclick="loadContent('materi')" class="mt-4 text-blue-600 hover:underline">Lihat Sekarang</button>
                             </div>
                             <div class="bg-green-50 p-6 rounded-lg shadow-sm">
                                 <h3 class="text-xl font-semibold text-green-700 mb-2">Quiz Mendatang</h3>
                                 <p class="text-gray-700">Quiz Bab 3 akan dibuka pada tanggal 28 Juli 2025.</p>
+                                <button onclick="loadContent('quiz')" class="mt-4 text-green-600 hover:underline">Detail</button>
                             </div>
                             <div class="bg-purple-50 p-6 rounded-lg shadow-sm">
                                 <h3 class="text-xl font-semibold text-purple-700 mb-2">Pengumuman</h3>
                                 <p class="text-gray-700">Perhatikan jadwal diskusi kelompok minggu ini.</p>
+                                <button onclick="loadContent('diskusi')" class="mt-4 text-purple-600 hover:underline">Baca Selengkapnya</button>
                             </div>
                         </div>
                     `;
