@@ -110,7 +110,7 @@
 
         // URL WEB APP GOOGLE APPS SCRIPT ANDA
         // Ini adalah URL yang Anda dapatkan setelah mendeploy Apps Script sebagai Web App.
-        const appsScriptWebAppLink = 'https://script.google.com/macros/s/AKfycbyhhFFmtfx18HWSucXAnKZ-H31rsVqdjXtkPMKhPhyw92cbOoxTpCU8mGjlkK6NRkHlPQ/exec';
+        const appsScriptWebAppLink = 'https://script.google.com/macros/s/AKfycbxkMlo0yb4jxiyjaAZBx31HnQxWyNzzIKe9ueRvsxuA9WFXwDe29y8KxsDOD3F1LTxgPA/exec';
 
         // Fungsi untuk memuat konten
         function loadContent(menuId) {
@@ -292,13 +292,14 @@
                     loadingSpinner.classList.remove('hidden'); // Tampilkan spinner
 
                     // Buat objek FormData dari formulir
+                    // Ini akan secara otomatis mengumpulkan semua input, termasuk file
                     const formData = new FormData(formDiskusi);
 
                     try {
                         const response = await fetch(appsScriptWebAppLink, {
                             method: 'POST',
-                            // Headers Content-Type tidak perlu disetel secara manual saat menggunakan FormData
-                            // FormData akan otomatis mengatur Content-Type: multipart/form-data
+                            // PENTING: JANGAN SETEL HEADERS SECARA MANUAL UNTUK FormData!
+                            // Browser akan otomatis mengatur Content-Type: multipart/form-data
                             body: formData, // Mengirim objek FormData langsung
                         });
 
