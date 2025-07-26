@@ -110,7 +110,7 @@
 
         // URL WEB APP GOOGLE APPS SCRIPT ANDA
         // Ini adalah URL yang Anda dapatkan setelah mendeploy Apps Script sebagai Web App.
-        const appsScriptWebAppLink = 'https://script.google.com/macros/s/AKfycbxRbysf3GS97QqJrCIF2xKdjlOqOQCQDfihv_UhujmcFdkWfCIDFD4DbT--sy1hRxXLHw/exec';
+        const appsScriptWebAppLink = 'https://script.google.com/macros/s/AKfycbxVuN6lAz2Lpv6GOMEExDBG1i3MUEPxIz-0KsnLiMnrBNhnKskG1BAkdkbq1ZaChkj6fw/exec';
 
         // Fungsi untuk memuat konten
         function loadContent(menuId) {
@@ -179,7 +179,7 @@
                     break;
                 case 'diskusi':
                     title = 'Diskusi Kelompok';
-                    description = 'Isi formulir ini untuk mengirimkan hasil diskusi kelompok Anda. Data akan tersimpan otomatis di Google Spreadsheet.';
+                    description = 'Isi formulir ini untuk mengirimkan hasil diskusi kelompok Anda. File lampiran akan diunggah ke Google Drive Anda.';
                     htmlContent = `
                         <form id="form-diskusi" class="space-y-6">
                             <div>
@@ -195,9 +195,9 @@
                                 <textarea id="hasil-diskusi" name="hasilDiskusi" rows="8" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Tuliskan poin-poin penting, kesimpulan, atau ringkasan diskusi Anda di sini..." required></textarea>
                             </div>
                             <div>
-                                <label for="lampiran" class="block text-sm font-medium text-gray-700 mb-1">Lampiran (Opsional - hanya nama file)</label>
+                                <label for="lampiran" class="block text-sm font-medium text-gray-700 mb-1">Lampiran (Opsional)</label>
                                 <input type="file" id="lampiran" name="lampiranFile" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
-                                <p class="mt-1 text-xs text-gray-500">Pilih file untuk mencatat namanya. Unggahan file sebenarnya memerlukan konfigurasi Apps Script lebih lanjut.</p>
+                                <p class="mt-1 text-xs text-gray-500">Pilih file untuk diunggah ke Google Drive Anda.</p>
                             </div>
                             <button type="submit" class="inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-200">
                                 Kirim Hasil Diskusi
@@ -291,26 +291,15 @@
                     diskusiMessage.classList.add('hidden'); // Sembunyikan pesan sebelumnya
                     loadingSpinner.classList.remove('hidden'); // Tampilkan spinner
 
-                    const judulDiskusi = document.getElementById('judul-diskusi').value;
-                    const anggotaKelompok = document.getElementById('anggota-kelompok').value;
-                    const hasilDiskusi = document.getElementById('hasil-diskusi').value;
-                    const lampiranInput = document.getElementById('lampiran'); // Mengambil elemen input file
-                    const namaFileLampiran = lampiranInput.files.length > 0 ? lampiranInput.files[0].name : ''; // Mendapatkan nama file
-
-                    const formData = {
-                        judulDiskusi: judulDiskusi,
-                        anggotaKelompok: anggotaKelompok,
-                        hasilDiskusi: hasilDiskusi,
-                        namaFileLampiran: namaFileLampiran // Menambahkan nama file ke data yang dikirim
-                    };
+                    // Buat objek FormData dari formulir
+                    const formData = new FormData(formDiskusi);
 
                     try {
                         const response = await fetch(appsScriptWebAppLink, {
                             method: 'POST',
-                            headers: {
-                                'Content-Type': 'text/plain;charset=utf-8',
-                            },
-                            body: JSON.stringify(formData),
+                            // Headers Content-Type tidak perlu disetel secara manual saat menggunakan FormData
+                            // FormData akan otomatis mengatur Content-Type: multipart/form-data
+                            body: formData, // Mengirim objek FormData langsung
                         });
 
                         const result = await response.json();
