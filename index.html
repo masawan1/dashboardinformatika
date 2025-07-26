@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Media Pembelajaran</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Warna latar belakang abu-abu muda */
+        }
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e2e8f0; /* Track color */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8; /* Thumb color */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b; /* Thumb color on hover */
+        }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden">
+
+    <!-- Sidebar Navigasi -->
+    <aside class="w-64 bg-gradient-to-br from-blue-600 to-blue-800 text-white p-6 flex flex-col shadow-lg">
+        <div class="text-2xl font-bold mb-8 text-center">
+            Dashboard Pembelajaran
+        </div>
+        <nav class="flex-1">
+            <ul>
+                <li class="mb-4">
+                    <button id="menu-materi" class="w-full text-left py-3 px-4 rounded-lg hover:bg-blue-700 transition duration-200 flex items-center space-x-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13.48m0-13.48a4.5 4.5 0 010-9 4.5 4.5 0 010 9m0 13.48a4.5 4.5 0 010-9 4.5 4.5 0 010 9m0 0V9.5a4.5 4.5 0 00-4.5 4.5v1.5m4.5-6.5a4.5 4.5 0 00-4.5 4.5v1.5m4.5-6.5a4.5 4.5 0 004.5 4.5v1.5m-4.5-6.5a4.5 4.5 0 004.5 4.5v1.5"></path></svg>
+                        <span>Materi</span>
+                    </button>
+                </li>
+                <li class="mb-4">
+                    <button id="menu-diskusi" class="w-full text-left py-3 px-4 rounded-lg hover:bg-blue-700 transition duration-200 flex items-center space-x-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14m-4 2v4m2-4h2m-4 0h2m-2 0H9m-2 0v4m2-4h2"></path></svg>
+                        <span>Diskusi Kelompok</span>
+                    </button>
+                </li>
+                <li class="mb-4">
+                    <button id="menu-quiz" class="w-full text-left py-3 px-4 rounded-lg hover:bg-blue-700 transition duration-200 flex items-center space-x-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                        <span>Quiz</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+        <div class="mt-auto text-sm text-center text-blue-200">
+            &copy; 2025 Dashboard Pembelajaran
+        </div>
+    </aside>
+
+    <!-- Konten Utama -->
+    <main class="flex-1 p-8 overflow-y-auto bg-gray-100">
+        <!-- Header Konten -->
+        <header class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h1 id="content-title" class="text-3xl font-bold text-gray-800">Selamat Datang di Dashboard Pembelajaran!</h1>
+            <p id="content-description" class="text-gray-600 mt-2">Pilih menu di samping untuk memulai.</p>
+        </header>
+
+        <!-- Area Konten Dinamis -->
+        <div id="content-area" class="bg-white rounded-xl shadow-md p-6 min-h-[calc(100vh-200px)]">
+            <!-- Konten akan dimuat di sini oleh JavaScript -->
+            <p class="text-gray-500">Gunakan menu navigasi di sisi kiri untuk mengakses materi, diskusi, dan quiz.</p>
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Contoh Kartu Informasi -->
+                <div class="bg-blue-50 p-6 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-semibold text-blue-700 mb-2">Materi Terbaru</h3>
+                    <p class="text-gray-700">Infografis "Sejarah Teknologi Informasi" baru saja ditambahkan.</p>
+                    <button class="mt-4 text-blue-600 hover:underline">Lihat Sekarang</button>
+                </div>
+                <div class="bg-green-50 p-6 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-semibold text-green-700 mb-2">Quiz Mendatang</h3>
+                    <p class="text-gray-700">Quiz Bab 3 akan dibuka pada tanggal 28 Juli 2025.</p>
+                    <button class="mt-4 text-green-600 hover:underline">Detail</button>
+                </div>
+                <div class="bg-purple-50 p-6 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-semibold text-purple-700 mb-2">Pengumuman</h3>
+                    <p class="text-gray-700">Perhatikan jadwal diskusi kelompok minggu ini.</p>
+                    <button class="mt-4 text-purple-600 hover:underline">Baca Selengkapnya</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Mendapatkan elemen-elemen DOM
+        const menuMateri = document.getElementById('menu-materi');
+        const menuDiskusi = document.getElementById('menu-diskusi');
+        const menuQuiz = document.getElementById('menu-quiz');
+
+        const contentTitle = document.getElementById('content-title');
+        const contentDescription = document.getElementById('content-description');
+        const contentArea = document.getElementById('content-area');
+
+        // URL WEB APP GOOGLE APPS SCRIPT ANDA
+        // Ini adalah URL yang Anda dapatkan setelah mendeploy Apps Script sebagai Web App.
+        const appsScriptWebAppLink = 'https://script.google.com/macros/s/AKfycbx7ne4GE3R19QIVaT7P24AXq3_pU4d0_yj0KxZ9W0FXbcPQigW62a8d8-sA52A_GR3oqg/exec';
+
+        // Fungsi untuk memuat konten
+        function loadContent(menuId) {
+            let title = '';
+            let description = '';
+            let htmlContent = '';
+
+            switch (menuId) {
+                case 'materi':
+                    title = 'Materi Pembelajaran';
+                    description = 'Jelajahi infografis dan media interaktif kami.';
+                    htmlContent = `
+                        <h2 class="text-2xl font-semibold text-gray-800 mb-6">Infografis</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+                            <!-- Infografis 1 -->
+                            <div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                                <img src="https://placehold.co/400x250/E0F2F7/2C5282?text=Infografis+1" alt="Infografis 1" class="w-full h-48 object-cover">
+                                <div class="p-4">
+                                    <h3 class="font-semibold text-lg text-gray-800 mb-2">Sejarah Internet</h3>
+                                    <p class="text-gray-600 text-sm">Visualisasi singkat tentang perkembangan internet dari masa ke masa.</p>
+                                    <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md shadow-md transition duration-200">Lihat Infografis</button>
+                                </div>
+                            </div>
+                            <!-- Infografis 2 -->
+                            <div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                                <img src="https://placehold.co/400x250/FEEBCB/9C4221?text=Infografis+2" alt="Infografis 2" class="w-full h-48 object-cover">
+                                <div class="p-4">
+                                    <h3 class="font-semibold text-lg text-gray-800 mb-2">Siklus Air</h3>
+                                    <p class="text-gray-600 text-sm">Penjelasan visual tentang proses siklus air di alam.</p>
+                                    <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md shadow-md transition duration-200">Lihat Infografis</button>
+                                </div>
+                            </div>
+                            <!-- Infografis 3 -->
+                            <div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                                <img src="https://placehold.co/400x250/D1FAE5/065F46?text=Infografis+3" alt="Infografis 3" class="w-full h-48 object-cover">
+                                <div class="p-4">
+                                    <h3 class="font-semibold text-lg text-gray-800 mb-2">Jenis-jenis Energi</h3>
+                                    <p class="text-gray-600 text-sm">Infografis yang menjelaskan berbagai sumber energi.</p>
+                                    <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md shadow-md transition duration-200">Lihat Infografis</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 class="text-2xl font-semibold text-gray-800 mb-6 mt-8">Media Interaktif</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Media Interaktif 1 (Video) -->
+                            <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-4">
+                                <h3 class="font-semibold text-lg text-gray-800 mb-2">Video Pembelajaran: Sel Tumbuhan</h3>
+                                <div class="aspect-video w-full mb-4 rounded-md overflow-hidden">
+                                    <iframe src="https://www.youtube.com/embed/S_x4VwN81oU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>
+                                </div>
+                                <p class="text-gray-600 text-sm">Video penjelasan mendalam tentang struktur dan fungsi sel tumbuhan.</p>
+                                <button class="mt-4 bg-purple-500 hover:bg-purple-600 text-white py-2 px-4 rounded-md shadow-md transition duration-200">Tandai Selesai</button>
+                            </div>
+                            <!-- Media Interaktif 2 (Simulasi) -->
+                            <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-4">
+                                <h3 class="font-semibold text-lg text-gray-800 mb-2">Simulasi Fisika: Gerak Parabola</h3>
+                                <div class="bg-gray-200 w-full h-48 flex items-center justify-center text-gray-500 rounded-md mb-4">
+                                    [Area Simulasi Interaktif]
+                                </div>
+                                <p class="text-gray-600 text-sm">Simulasi interaktif untuk memahami konsep gerak parabola.</p>
+                                <button class="mt-4 bg-purple-500 hover:bg-purple-600 text-white py-2 px-4 rounded-md shadow-md transition duration-200">Mulai Simulasi</button>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'diskusi':
+                    title = 'Diskusi Kelompok';
+                    description = 'Isi formulir ini untuk mengirimkan hasil diskusi kelompok Anda. Data akan tersimpan otomatis di Google Spreadsheet.';
+                    htmlContent = `
+                        <form id="form-diskusi" class="space-y-6">
+                            <div>
+                                <label for="judul-diskusi" class="block text-sm font-medium text-gray-700 mb-1">Judul Diskusi</label>
+                                <input type="text" id="judul-diskusi" name="judulDiskusi" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Contoh: Diskusi Bab 1: Ekosistem" required>
+                            </div>
+                            <div>
+                                <label for="anggota-kelompok" class="block text-sm font-medium text-gray-700 mb-1">Anggota Kelompok (pisahkan dengan koma)</label>
+                                <input type="text" id="anggota-kelompok" name="anggotaKelompok" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Contoh: Budi, Ani, Citra" required>
+                            </div>
+                            <div>
+                                <label for="hasil-diskusi" class="block text-sm font-medium text-gray-700 mb-1">Hasil Diskusi Kelompok</label>
+                                <textarea id="hasil-diskusi" name="hasilDiskusi" rows="8" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Tuliskan poin-poin penting, kesimpulan, atau ringkasan diskusi Anda di sini..." required></textarea>
+                            </div>
+                            <button type="submit" class="inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-200">
+                                Kirim Hasil Diskusi
+                            </button>
+                        </form>
+                        <div id="diskusi-message" class="mt-4 p-3 rounded-md text-sm hidden" role="alert"></div>
+                        <div id="loading-spinner" class="hidden mt-4 text-center">
+                            <svg class="animate-spin h-8 w-8 text-blue-500 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            <p class="text-gray-600 mt-2">Mengirim data...</p>
+                        </div>
+                    `;
+                    break;
+                case 'quiz':
+                    title = 'Quiz Pembelajaran';
+                    description = 'Uji pemahaman Anda dengan mengerjakan quiz.';
+                    htmlContent = `
+                        <h2 class="text-2xl font-semibold text-gray-800 mb-6">Daftar Quiz</h2>
+                        <div id="quiz-list" class="space-y-4">
+                            <!-- Quiz Item 1 -->
+                            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-center justify-between shadow-sm">
+                                <div>
+                                    <h3 class="font-semibold text-lg text-blue-800">Quiz Bab 1: Dasar-dasar Biologi</h3>
+                                    <p class="text-gray-700 text-sm">Batas waktu: 30 menit | Status: Belum Dikerjakan</p>
+                                </div>
+                                <button class="start-quiz-btn bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md shadow-md transition duration-200" data-quiz-id="quiz1">Mulai Quiz</button>
+                            </div>
+                            <!-- Quiz Item 2 -->
+                            <div class="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center justify-between shadow-sm">
+                                <div>
+                                    <h3 class="font-semibold text-lg text-green-800">Quiz Bab 2: Hukum Newton</h3>
+                                    <p class="text-gray-700 text-sm">Batas waktu: 45 menit | Status: Belum Dikerjakan</p>
+                                </div>
+                                <button class="start-quiz-btn bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-md shadow-md transition duration-200" data-quiz-id="quiz2">Mulai Quiz</button>
+                            </div>
+                        </div>
+
+                        <div id="quiz-container" class="mt-8 hidden">
+                            <h2 id="current-quiz-title" class="text-2xl font-semibold text-gray-800 mb-4"></h2>
+                            <div id="timer" class="text-lg font-medium text-red-600 mb-4">Waktu Tersisa: <span id="time-left"></span></div>
+                            <form id="quiz-form" class="space-y-6">
+                                <!-- Pertanyaan Quiz akan dimuat di sini -->
+                            </form>
+                            <button id="submit-quiz-btn" class="mt-6 inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-200">
+                                Selesai Quiz
+                            </button>
+                            <div id="quiz-result" class="mt-4 p-4 rounded-md text-lg font-semibold hidden"></div>
+                        </div>
+                    `;
+                    break;
+                default:
+                    title = 'Selamat Datang di Dashboard Pembelajaran!';
+                    description = 'Pilih menu di samping untuk memulai.';
+                    htmlContent = `
+                        <p class="text-gray-500">Gunakan menu navigasi di sisi kiri untuk mengakses materi, diskusi, dan quiz.</p>
+                        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="bg-blue-50 p-6 rounded-lg shadow-sm">
+                                <h3 class="text-xl font-semibold text-blue-700 mb-2">Materi Terbaru</h3>
+                                <p class="text-gray-700">Infografis "Sejarah Teknologi Informasi" baru saja ditambahkan.</p>
+                                <button onclick="loadContent('materi')" class="mt-4 text-blue-600 hover:underline">Lihat Sekarang</button>
+                            </div>
+                            <div class="bg-green-50 p-6 rounded-lg shadow-sm">
+                                <h3 class="text-xl font-semibold text-green-700 mb-2">Quiz Mendatang</h3>
+                                <p class="text-gray-700">Quiz Bab 3 akan dibuka pada tanggal 28 Juli 2025.</p>
+                                <button onclick="loadContent('quiz')" class="mt-4 text-green-600 hover:underline">Detail</button>
+                            </div>
+                            <div class="bg-purple-50 p-6 rounded-lg shadow-sm">
+                                <h3 class="text-xl font-semibold text-purple-700 mb-2">Pengumuman</h3>
+                                <p class="text-gray-700">Perhatikan jadwal diskusi kelompok minggu ini.</p>
+                                <button onclick="loadContent('diskusi')" class="mt-4 text-purple-600 hover:underline">Baca Selengkapnya</button>
+                            </div>
+                        </div>
+                    `;
+                    break;
+            }
+
+            contentTitle.textContent = title;
+            contentDescription.textContent = description;
+            contentArea.innerHTML = htmlContent;
+
+            // Tambahkan event listener setelah konten dimuat
+            if (menuId === 'diskusi') {
+                const formDiskusi = document.getElementById('form-diskusi');
+                const diskusiMessage = document.getElementById('diskusi-message');
+                const loadingSpinner = document.getElementById('loading-spinner');
+
+                formDiskusi.addEventListener('submit', async (e) => {
+                    e.preventDefault(); // Mencegah refresh halaman
+                    diskusiMessage.classList.add('hidden'); // Sembunyikan pesan sebelumnya
+                    loadingSpinner.classList.remove('hidden'); // Tampilkan spinner
+
+                    const judulDiskusi = document.getElementById('judul-diskusi').value;
+                    const anggotaKelompok = document.getElementById('anggota-kelompok').value;
+                    const hasilDiskusi = document.getElementById('hasil-diskusi').value;
+
+                    const formData = {
+                        judulDiskusi: judulDiskusi,
+                        anggotaKelompok: anggotaKelompok,
+                        hasilDiskusi: hasilDiskusi,
+                    };
+
+                    try {
+                        const response = await fetch(appsScriptWebAppLink, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'text/plain;charset=utf-8',
+                            },
+                            body: JSON.stringify(formData),
+                        });
+
+                        const result = await response.json();
+
+                        loadingSpinner.classList.add('hidden'); // Sembunyikan spinner
+
+                        diskusiMessage.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-green-100', 'text-green-700');
+                        if (result.success) {
+                            diskusiMessage.classList.add('bg-green-100', 'text-green-700');
+                            diskusiMessage.textContent = result.message;
+                            formDiskusi.reset(); // Reset form setelah sukses
+                        } else {
+                            diskusiMessage.classList.add('bg-red-100', 'text-red-700');
+                            diskusiMessage.textContent = result.message;
+                        }
+
+                        setTimeout(() => {
+                            diskusiMessage.classList.add('hidden');
+                        }, 5000); // Sembunyikan pesan setelah 5 detik
+
+                    } catch (error) {
+                        loadingSpinner.classList.add('hidden'); // Sembunyikan spinner
+                        diskusiMessage.classList.remove('hidden', 'bg-green-100', 'text-green-700');
+                        diskusiMessage.classList.add('bg-red-100', 'text-red-700');
+                        diskusiMessage.textContent = 'Terjadi kesalahan jaringan atau server: ' + error.message;
+                        setTimeout(() => {
+                            diskusiMessage.classList.add('hidden');
+                        }, 5000);
+                    }
+                });
+            } else if (menuId === 'quiz') {
+                const quizList = document.getElementById('quiz-list');
+                const quizContainer = document.getElementById('quiz-container');
+                const currentQuizTitle = document.getElementById('current-quiz-title');
+                const quizForm = document.getElementById('quiz-form');
+                const submitQuizBtn = document.getElementById('submit-quiz-btn');
+                const quizResult = document.getElementById('quiz-result');
+                const timeLeftSpan = document.getElementById('time-left');
+                let timerInterval;
+
+                const quizzes = {
+                    quiz1: {
+                        title: 'Quiz Bab 1: Dasar-dasar Biologi',
+                        timeLimit: 30 * 60, // 30 minutes in seconds
+                        questions: [
+                            {
+                                question: 'Apa unit dasar kehidupan?',
+                                options: ['Atom', 'Molekul', 'Sel', 'Organ'],
+                                answer: 'Sel'
+                            },
+                            {
+                                question: 'Proses tumbuhan membuat makanannya sendiri disebut?',
+                                options: ['Respirasi', 'Fotosintesis', 'Transpirasi', 'Fermentasi'],
+                                answer: 'Fotosintesis'
+                            },
+                            {
+                                question: 'Organel yang bertanggung jawab untuk produksi energi pada sel adalah?',
+                                options: ['Nukleus', 'Mitokondria', 'Ribosom', 'Retikulum Endoplasma'],
+                                answer: 'Mitokondria'
+                            }
+                        ]
+                    },
+                    quiz2: {
+                        title: 'Quiz Bab 2: Hukum Newton',
+                        timeLimit: 45 * 60, // 45 minutes in seconds
+                        questions: [
+                            {
+                                question: 'Hukum Newton I dikenal sebagai hukum?',
+                                options: ['Aksi-Reaksi', 'Inersia', 'Gravitasi', 'Energi'],
+                                answer: 'Inersia'
+                            },
+                            {
+                                question: 'Rumus dasar Hukum Newton II adalah?',
+                                options: ['E=mc²', 'F=ma', 'V=IR', 'P=VI'],
+                                answer: 'F=ma'
+                            },
+                            {
+                                question: 'Jika Anda mendorong dinding, dinding akan mendorong Anda kembali dengan gaya yang sama. Ini adalah contoh Hukum Newton ke?',
+                                options: ['Satu', 'Dua', 'Tiga', 'Nol'],
+                                answer: 'Tiga'
+                            }
+                        ]
+                    }
+                };
+
+                document.querySelectorAll('.start-quiz-btn').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const quizId = e.target.dataset.quizId;
+                        const quizData = quizzes[quizId];
+
+                        quizList.classList.add('hidden');
+                        quizContainer.classList.remove('hidden');
+                        currentQuizTitle.textContent = quizData.title;
+                        quizResult.classList.add('hidden');
+                        quizForm.innerHTML = ''; // Clear previous questions
+                        clearInterval(timerInterval); // Clear any existing timer
+
+                        // Render questions
+                        quizData.questions.forEach((q, index) => {
+                            const questionHtml = `
+                                <div class="mb-4 p-4 border border-gray-200 rounded-md bg-gray-50">
+                                    <p class="font-medium text-gray-800 mb-2">Q${index + 1}: ${q.question}</p>
+                                    <div class="space-y-2">
+                                        ${q.options.map(option => `
+                                            <label class="inline-flex items-center">
+                                                <input type="radio" class="form-radio h-4 w-4 text-blue-600" name="question${index}" value="${option}">
+                                                <span class="ml-2 text-gray-700">${option}</span>
+                                            </label>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                            `;
+                            quizForm.insertAdjacentHTML('beforeend', questionHtml);
+                        });
+
+                        // Start timer
+                        let timeLeft = quizData.timeLimit;
+                        function updateTimer() {
+                            const minutes = Math.floor(timeLeft / 60);
+                            const seconds = timeLeft % 60;
+                            timeLeftSpan.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                            if (timeLeft <= 0) {
+                                clearInterval(timerInterval);
+                                submitQuiz();
+                                timeLeftSpan.textContent = "Waktu Habis!";
+                            } else {
+                                timeLeft--;
+                            }
+                        }
+                        updateTimer(); // Initial call
+                        timerInterval = setInterval(updateTimer, 1000);
+                    });
+                });
+
+                submitQuizBtn.addEventListener('click', submitQuiz);
+
+                function submitQuiz() {
+                    clearInterval(timerInterval); // Stop the timer
+                    let score = 0;
+                    quizResult.classList.remove('hidden');
+                    quizResult.classList.remove('bg-red-100', 'text-red-700', 'bg-green-100', 'text-green-700');
+
+                    const currentQuizId = document.querySelector('.start-quiz-btn:not([hidden])')?.dataset.quizId || 'quiz1'; // Default to quiz1 if not explicitly set
+                    const quizData = quizzes[currentQuizId];
+
+                    quizData.questions.forEach((q, index) => {
+                        const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+                        if (selectedOption && selectedOption.value === q.answer) {
+                            score++;
+                        }
+                    });
+
+                    const totalQuestions = quizData.questions.length;
+                    const percentage = (score / totalQuestions) * 100;
+
+                    if (percentage >= 70) { // Example pass mark
+                        quizResult.classList.add('bg-green-100', 'text-green-700');
+                        quizResult.textContent = `Selamat! Anda lulus dengan skor ${score}/${totalQuestions} (${percentage.toFixed(2)}%).`;
+                    } else {
+                        quizResult.classList.add('bg-red-100', 'text-red-700');
+                        quizResult.textContent = `Maaf, Anda belum lulus. Skor Anda ${score}/${totalQuestions} (${percentage.toFixed(2)}%). Coba lagi!`;
+                    }
+
+                    // Disable form and button after submission
+                    const quizInputs = quizForm.querySelectorAll('input, button');
+                    quizInputs.forEach(input => input.disabled = true);
+                    submitQuizBtn.disabled = true;
+                }
+            }
+        }
+
+        // Event Listeners untuk menu navigasi
+        menuMateri.addEventListener('click', () => loadContent('materi'));
+        menuDiskusi.addEventListener('click', () => loadContent('diskusi'));
+        menuQuiz.addEventListener('click', () => loadContent('quiz'));
+
+        // Muat konten default saat halaman pertama kali dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            loadContent('home'); // Memuat halaman selamat datang
+        });
+    </script>
+</body>
+</html>
