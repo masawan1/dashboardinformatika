@@ -7,12 +7,13 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Inter Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6; /* Warna latar belakang abu-abu muda */
-            overflow: hidden; /* Mencegah gulir saat sidebar terbuka */
+            background-color: #f8fafc; /* Very light blue-gray background */
+            color: #334155; /* Darker text for better readability */
+            overflow: hidden; /* Prevent scroll when sidebar is open */
         }
         /* Custom scrollbar for better aesthetics */
         ::-webkit-scrollbar {
@@ -30,43 +31,192 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #64748b; /* Thumb color on hover */
         }
+
+        /* Sidebar specific styles */
+        .sidebar {
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%); /* Dark gradient sidebar */
+            color: #e2e8f0; /* Lighter text for sidebar */
+            border-right: 1px solid #334155; /* Subtle border */
+        }
+        .sidebar-link {
+            transition: all 0.2s ease-in-out;
+        }
+        .sidebar-link:hover {
+            background-color: #334155; /* Darker hover for sidebar links */
+            color: #ffffff;
+            transform: translateX(5px); /* Slight slide effect */
+        }
+        .sidebar-link svg {
+            transition: transform 0.2s ease-in-out;
+        }
+        .sidebar-link:hover svg {
+            transform: scale(1.1); /* Icon slight grow on hover */
+        }
+
+        /* Card styles */
+        .card {
+            background-color: #ffffff;
+            border-radius: 1.25rem; /* More rounded corners */
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1), 0 6px 12px -3px rgba(0, 0, 0, 0.08); /* Stronger, softer shadow */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-8px); /* More pronounced lift effect on hover */
+            box-shadow: 0 25px 40px -8px rgba(0, 0, 0, 0.15), 0 12px 20px -6px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Primary Button Style (Blue) */
+        .btn-primary {
+            background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%); /* Blue gradient */
+            color: white;
+            padding: 0.85rem 1.75rem; /* Larger padding */
+            border-radius: 0.85rem; /* More rounded */
+            font-weight: 700; /* Extra bold */
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3); /* Blue shadow */
+        }
+        .btn-primary:hover {
+            background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%); /* Darker blue gradient on hover */
+            transform: translateY(-3px); /* Slight lift on hover */
+            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.4);
+        }
+
+        /* Secondary Button Style (Purple) */
+        .btn-secondary {
+            background: linear-gradient(90deg, #9333ea 0%, #7e22ce 100%); /* Purple gradient */
+            color: white;
+            padding: 0.85rem 1.75rem; /* Larger padding */
+            border-radius: 0.85rem; /* More rounded */
+            font-weight: 700; /* Extra bold */
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 4px 10px rgba(147, 51, 234, 0.3); /* Purple shadow */
+        }
+        .btn-secondary:hover {
+            background: linear-gradient(90deg, #7e22ce 0%, #6b21a8 100%); /* Darker purple gradient on hover */
+            transform: translateY(-3px); /* Slight lift on hover */
+            box-shadow: 0 6px 15px rgba(126, 34, 206, 0.4);
+        }
+
+        /* Success Button Style (Green) */
+        .btn-success {
+            background: linear-gradient(90deg, #10b981 0%, #059669 100%); /* Green gradient */
+            color: white;
+            padding: 0.85rem 1.75rem;
+            border-radius: 0.85rem;
+            font-weight: 700;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+        }
+        .btn-success:hover {
+            background: linear-gradient(90deg, #059669 0%, #047857 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(5, 150, 105, 0.4);
+        }
+
+        /* Quiz specific styles */
+        .quiz-option-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 0.85rem 1.25rem;
+            border-radius: 0.75rem;
+            border: 2px solid #e5e7eb; /* Light gray border */
+            background-color: #fdfdfd; /* Very light background */
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .quiz-option-label:hover {
+            background-color: #f3f4f6; /* Slightly darker on hover */
+            border-color: #a78bfa; /* Purple border on hover */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .quiz-option-label input[type="radio"] {
+            display: none; /* Hide default radio button */
+        }
+        .quiz-option-letter {
+            width: 2.25rem; /* Fixed width for letter circle */
+            height: 2.25rem; /* Fixed height for letter circle */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #a78bfa; /* Purple border */
+            border-radius: 9999px; /* Full rounded */
+            color: #a78bfa; /* Purple text */
+            font-weight: 800; /* Extra Bold */
+            font-size: 1rem; /* text-base */
+            margin-right: 1rem; /* mr-4 */
+            flex-shrink: 0;
+            transition: all 0.2s ease-in-out;
+        }
+        .quiz-option-label input[type="radio"]:checked + .quiz-option-letter {
+            background-color: #a78bfa; /* Purple background when checked */
+            color: white; /* White text when checked */
+            border-color: #a78bfa; /* Purple border when checked */
+            box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.3); /* Glow effect */
+        }
+        .quiz-option-label input[type="radio"]:checked + .quiz-option-letter + .quiz-option-text {
+            color: #6d28d9; /* Darker purple text for selected option */
+            font-weight: 700;
+        }
+        .quiz-option-text {
+            flex-grow: 1;
+            color: #4b5563; /* Gray text */
+            font-size: 1.05rem; /* Slightly larger text */
+        }
+
+        /* Form input styles */
+        .form-input {
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease-in-out;
+        }
+        .form-input:focus {
+            border-color: #3b82f6;
+            ring: 2px;
+            ring-color: #3b82f6;
+            ring-opacity: 0.5;
+            outline: none;
+        }
     </style>
 </head>
 <body class="flex h-screen">
 
-    <!-- Overlay untuk mobile, muncul saat sidebar terbuka -->
+    <!-- Overlay for mobile, appears when sidebar is open -->
     <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden"></div>
 
-    <!-- Sidebar Navigasi -->
+    <!-- Sidebar Navigation -->
     <aside id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-gradient-to-br from-blue-600 to-blue-800 text-white p-6 flex flex-col shadow-lg
-                  transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out z-50">
+                   transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out z-50">
         <div class="flex justify-between items-center mb-8">
-            <div class="text-2xl font-bold text-center flex-grow">
-                Dashboard
+            <div class="text-3xl font-extrabold text-blue-200 text-center flex-grow">
+                Mr. Cloud
             </div>
-            <!-- Tombol Tutup Sidebar untuk Mobile -->
+            <!-- Close Sidebar Button for Mobile -->
             <button id="close-sidebar-btn" class="text-white md:hidden focus:outline-none focus:ring-2 focus:ring-blue-400 rounded-full p-1">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
         </div>
         <nav class="flex-1 overflow-y-auto">
             <ul>
                 <li class="mb-4">
-                    <button id="menu-materi" class="w-full text-left py-3 px-4 rounded-lg hover:bg-blue-700 transition duration-200 flex items-center space-x-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13.48m0-13.48a4.5 4.5 0 010-9 4.5 4.5 0 010 9m0 13.48a4.5 4.5 0 010-9 4.5 4.5 0 010 9m0 0V9.5a4.5 4.5 0 00-4.5 4.5v1.5m4.5-6.5a4.5 4.5 0 00-4.5 4.5v1.5m4.5-6.5a4.5 4.5 0 004.5 4.5v1.5m-4.5-6.5a4.5 4.5 0 004.5 4.5v1.5"></path></svg>
-                        <span>Materi</span>
+                    <button id="menu-materi" class="sidebar-link w-full text-left py-3 px-4 rounded-lg flex items-center space-x-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        <svg class="w-6 h-6 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13.48m0-13.48a4.5 4.5 0 010-9 4.5 4.5 0 010 9m0 13.48a4.5 4.5 0 010-9 4.5 4.5 0 010 9m0 0V9.5a4.5 4.5 0 00-4.5 4.5v1.5m4.5-6.5a4.5 4.5 0 00-4.5 4.5v1.5m4.5-6.5a4.5 4.5 0 004.5 4.5v1.5m-4.5-6.5a4.5 4.5 0 004.5 4.5v1.5"></path></svg>
+                        <span class="text-lg font-medium">Materi</span>
                     </button>
                 </li>
                 <li class="mb-4">
-                    <button id="menu-diskusi" class="w-full text-left py-3 px-4 rounded-lg hover:bg-blue-700 transition duration-200 flex items-center space-x-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14m-4 2v4m2-4h2m-4 0h2m-2 0H9m-2 0v4m2-4h2"></path></svg>
-                        <span>Diskusi Kelompok</span>
+                    <button id="menu-diskusi" class="sidebar-link w-full text-left py-3 px-4 rounded-lg flex items-center space-x-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        <svg class="w-6 h-6 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14m-4 2v4m2-4h2m-4 0h2m-2 0H9m-2 0v4m2-4h2"></path></svg>
+                        <span class="text-lg font-medium">Diskusi Kelompok</span>
                     </button>
                 </li>
                 <li class="mb-4">
-                    <button id="menu-quiz" class="w-full text-left py-3 px-4 rounded-lg hover:bg-blue-700 transition duration-200 flex items-center space-x-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
-                        <span>Quiz</span>
+                    <button id="menu-quiz" class="sidebar-link w-full text-left py-3 px-4 rounded-lg flex items-center space-x-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        <svg class="w-6 h-6 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                        <span class="text-lg font-medium">Quiz</span>
                     </button>
                 </li>
             </ul>
@@ -76,39 +226,42 @@
         </div>
     </aside>
 
-    <!-- Konten Utama -->
-    <div class="flex-1 flex flex-col md:ml-64"> <!-- Tambahkan margin kiri untuk desktop -->
-        <!-- Header Utama (untuk mobile dan desktop) -->
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col md:ml-64"> <!-- Add left margin for desktop -->
+        <!-- Main Header (for mobile and desktop) -->
         <header class="bg-white rounded-xl shadow-md p-4 md:p-6 mb-4 md:mb-8 flex items-center sticky top-0 z-30 w-full">
-            <!-- Tombol Hamburger untuk Mobile -->
+            <!-- Hamburger Button for Mobile -->
             <button id="hamburger-btn" class="text-gray-600 md:hidden focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-full p-2 mr-4">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             </button>
-            <h1 id="content-title" class="text-xl md:text-3xl font-bold text-gray-800 flex-grow">Selamat Datang di Dashboard Pembelajaran!</h1>
+            <h1 id="content-title" class="text-xl md:text-3xl font-bold text-gray-800 flex-grow flex items-center">
+                <svg class="w-8 h-8 mr-3 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                Selamat Datang di Dashboard Pembelajaran!
+            </h1>
             <p id="content-description" class="text-gray-600 mt-2 md:mt-0 hidden md:block">Pilih menu di samping untuk memulai.</p>
         </header>
 
         <main class="flex-1 p-4 md:p-8 overflow-y-auto bg-gray-100">
-            <!-- Area Konten Dinamis -->
+            <!-- Dynamic Content Area -->
             <div id="content-area" class="bg-white rounded-xl shadow-md p-4 md:p-6 min-h-[calc(100vh-160px)] md:min-h-[calc(100vh-200px)]">
-                <!-- Konten akan dimuat di sini oleh JavaScript -->
+                <!-- Content will be loaded here by JavaScript -->
                 <p class="text-gray-500">Gunakan menu navigasi di sisi kiri untuk mengakses materi, diskusi, dan quiz.</p>
                 <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Contoh Kartu Informasi -->
+                    <!-- Example Info Cards -->
                     <div class="bg-blue-50 p-6 rounded-lg shadow-sm">
                         <h3 class="text-xl font-semibold text-blue-700 mb-2">Materi Terbaru</h3>
                         <p class="text-gray-700">Infografis "Data & Algoritma" baru saja ditambahkan.</p>
-                        <button class="mt-4 text-blue-600 hover:underline">Lihat Sekarang</button>
+                        <button onclick="loadContent('materi')" class="mt-4 text-blue-600 hover:underline">Lihat Sekarang</button>
                     </div>
                     <div class="bg-green-50 p-6 rounded-lg shadow-sm">
                         <h3 class="text-xl font-semibold text-green-700 mb-2">Quiz Mendatang</h3>
-                        <p class="text-gray-700">Quiz Bab 3 akan dibuka pada tanggal 28 Juli 2025.</p>
-                        <button class="mt-4 text-green-600 hover:underline">Detail</button>
+                        <p class="text-gray-700">Quiz Bab 1 sudah bisa dikerjakan mulai tanggal 26 Juli 2025.</p>
+                        <button onclick="loadContent('quiz')" class="mt-4 text-green-600 hover:underline">Detail</button>
                     </div>
                     <div class="bg-purple-50 p-6 rounded-lg shadow-sm">
                         <h3 class="text-xl font-semibold text-purple-700 mb-2">Pengumuman</h3>
-                        <p class="text-gray-700">Perhatikan jadwal diskusi kelompok minggu ini.</p>
-                        <button class="mt-4 text-purple-600 hover:underline">Baca Selengkapnya</button>
+                        <p class="text-gray-700">aktif dalam diskusi kelompok menjadi nilai tambah.</p>
+                        <button onclick="loadContent('diskusi')" class="mt-4 text-purple-600 hover:underline">Baca Selengkapnya</button>
                     </div>
                 </div>
             </div>
@@ -116,7 +269,7 @@
     </div>
 
     <script>
-        // Mendapatkan elemen-elemen DOM
+        // Get DOM elements
         const menuMateri = document.getElementById('menu-materi');
         const menuDiskusi = document.getElementById('menu-diskusi');
         const menuQuiz = document.getElementById('menu-quiz');
@@ -125,46 +278,46 @@
         const contentDescription = document.getElementById('content-description');
         const contentArea = document.getElementById('content-area');
 
-        // Elemen-elemen baru untuk responsivitas mobile
+        // New elements for mobile responsiveness
         const sidebar = document.getElementById('sidebar');
         const sidebarOverlay = document.getElementById('sidebar-overlay');
         const hamburgerBtn = document.getElementById('hamburger-btn');
         const closeSidebarBtn = document.getElementById('close-sidebar-btn');
 
-        // URL WEB APP GOOGLE APPS SCRIPT ANDA
+        // YOUR GOOGLE APPS SCRIPT WEB APP URL
         const appsScriptWebAppLink = 'https://script.google.com/macros/s/AKfycbyzWlJo_dPugZbocyOIG_cXxQ8FNqTbCs3r7dpR33B0pVBAjLrBYKHC8dtibEXVTQoe-w/exec';
 
-        // Fungsi untuk membuka sidebar
+        // Function to open sidebar
         function openSidebar() {
             sidebar.classList.remove('-translate-x-full');
             sidebarOverlay.classList.remove('hidden');
         }
 
-        // Fungsi untuk menutup sidebar
+        // Function to close sidebar
         function closeSidebar() {
             sidebar.classList.add('-translate-x-full');
             sidebarOverlay.classList.add('hidden');
         }
 
-        // Event Listeners untuk responsivitas mobile
+        // Event Listeners for mobile responsiveness
         hamburgerBtn.addEventListener('click', openSidebar);
         closeSidebarBtn.addEventListener('click', closeSidebar);
-        sidebarOverlay.addEventListener('click', closeSidebar); // Menutup sidebar saat mengklik overlay
+        sidebarOverlay.addEventListener('click', closeSidebar); // Close sidebar when clicking overlay
 
-        // Menutup sidebar jika ukuran layar berubah ke desktop
+        // Close sidebar if screen size changes to desktop
         window.addEventListener('resize', () => {
             if (window.innerWidth >= 768) { // md breakpoint in Tailwind
-                closeSidebar(); // Pastikan sidebar tertutup di tampilan mobile saat beralih ke desktop
+                closeSidebar(); // Ensure sidebar is closed in mobile view when switching to desktop
             }
         });
 
-        // Fungsi untuk memuat konten
+        // Function to load content
         function loadContent(menuId) {
             let title = '';
             let description = '';
             let htmlContent = '';
 
-            // Tutup sidebar setelah memilih menu di mobile
+            // Close sidebar after selecting a menu on mobile
             if (window.innerWidth < 768) {
                 closeSidebar();
             }
@@ -174,65 +327,66 @@
                     title = 'Materi Pembelajaran';
                     description = 'Jelajahi infografis dan media interaktif kami.';
                     htmlContent = `
-                        <h2 class="text-2xl font-semibold text-gray-800 mb-6">Infografis</h2>
+                        <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">Infografis</h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
                             <!-- Infografis 1 -->
-                            <div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
-                                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEieMXSqYTZU91PNdSd7Kedwuw5hqmkYWQX_Wz4w2kf5jUt_kMB2uN7C47_VtjCibkLpB852362dPYGpTBdn4RdxuOHf08haWSYH55-OEzVuPr4edsNfpUoFv8CQCUhNxY4ajIhFrRCnLQ495zjHrZLhFUaBSK0lfcRS0kxtOtPgg2RHt2-VpC2ddMNs5cQ/s1536/ChatGPT%20Image%20Jul%2026,%202025,%2001_30_24%20PM.png" alt="Infografis 1" class="w-full h-48 object-cover">
-                                <div class="p-4">
+                            <div class="card p-4">
+                                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEieMXSqYTZU91PNdSd7Kedwuw5hqmkYWQX_Wz4w2kf5jUt_kMB2uN7C47_VtjCibkLpB852362dPYGpTBdn4RdxuOHf08haWSYH55-OEzVuPr4edsNfpUoFv8CQCUhNxY4ajIhFrRCnLQ495zjHrZLhFUaBSK0lfcRS0kxtOtPgg2RHt2-VpC2ddMNs5cQ/s1536/ChatGPT%20Image%20Jul%2026,%202025,%2001_30_24%20PM.png" onerror="this.onerror=null;this.src='https://placehold.co/400x250/FEEBCB/9C4221?text=Infografis+1';" alt="Infografis 1" class="w-full h-48 object-cover rounded-lg mb-4">
+                                <div class="p-2">
                                     <h3 class="font-semibold text-lg text-gray-800 mb-2">Data & Algoritma</h3>
                                     <p class="text-gray-600 text-sm">Membongkar rahasia bagaimana program komputer berpikir dan bekerja secara efisien.</p>
                                     <a href="https://masawan1.github.io/Struktur-Data-dan-Algoritma/" target="_blank" class="block mt-4">
-                                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md shadow-md transition duration-200">Lihat Infografis</button>
+                                        <button class="btn-primary w-full">Lihat Infografis</button>
                                     </a>
                                 </div>
                             </div>
                             <!-- Infografis 2 -->
-                            <div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
-                                <img src="https://placehold.co/400x250/FEEBCB/9C4221?text=Infografis+2" alt="Infografis 2" class="w-full h-48 object-cover">
-                                <div class="p-4">
-                                    <h3 class="font-semibold text-lg text-gray-800 mb-2">Belum Updae</h3>
+                            <div class="card p-4">
+                                <img src="https://placehold.co/400x250/D1FAE5/065F46?text=Infografis+2" onerror="this.onerror=null;this.src='https://placehold.co/400x250/D1FAE5/065F46?text=Infografis+2';" alt="Infografis 2" class="w-full h-48 object-cover rounded-lg mb-4">
+                                <div class="p-2">
+                                    <h3 class="font-semibold text-lg text-gray-800 mb-2">Belum Update</h3>
                                     <p class="text-gray-600 text-sm">Waiting Update.</p>
                                     <a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwj1q_L-t6qGAxW8SWwGHd2gAbEQFnoECB0QAQ&url=https%3A%2F%2Fid.wikipedia.org%2Fwiki%2FSiklus_air&usg=AOvVaw2J2J2J2J2J2J2J2J2J2J2J2J2J" target="_blank" class="block mt-4">
-                                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md shadow-md transition duration-200">Lihat Infografis</button>
+                                        <button class="btn-primary w-full">Lihat Infografis</button>
                                     </a>
                                 </div>
                             </div>
                             <!-- Infografis 3 -->
-                            <div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
-                                <img src="https://placehold.co/400x250/D1FAE5/065F46?text=Infografis+3" alt="Infografis 3" class="w-full h-48 object-cover">
-                                <div class="p-4">
+                            <div class="card p-4">
+                                <img src="https://placehold.co/400x250/FEEBCB/9C4221?text=Infografis+3" onerror="this.onerror=null;this.src='https://placehold.co/400x250/FEEBCB/9C4221?text=Infografis+3';" alt="Infografis 3" class="w-full h-48 object-cover rounded-lg mb-4">
+                                <div class="p-2">
                                     <h3 class="font-semibold text-lg text-gray-800 mb-2">Belum Update</h3>
                                     <p class="text-gray-600 text-sm">Waiting Update.</p>
                                     <a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwj1q_L-t6qGAxW8SWwGHd2gAbEQFnoECB0QAQ&url=https%3A%2F%2Fid.wikipedia.org%2Fwiki%2FEnergi&usg=AOvVaw2J2J2J2J2J2J2J2J2J2J2J2J2J" target="_blank" class="block mt-4">
-                                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md shadow-md transition duration-200">Lihat Infografis</button>
+                                        <button class="btn-primary w-full">Lihat Infografis</button>
                                     </a>
                                 </div>
                             </div>
                         </div>
 
-                        <h2 class="text-2xl font-semibold text-gray-800 mb-6 mt-8">Media Interaktif</h2>
+                        <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 mt-8">Media Interaktif</h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <!-- Media Interaktif 1 (Video) -->
-                            <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-4">
+                            <div class="card p-4">
                                 <h3 class="font-semibold text-lg text-gray-800 mb-2">Video Pembelajaran: Informatika</h3>
-                                <div class="bg-gray-200 w-full h-48 flex items-center justify-center text-gray-500 rounded-md mb-4">
+                                <div class="aspect-video w-full mb-4 rounded-lg overflow-hidden shadow-md">
                                     <iframe src="https://www.youtube.com/embed/J768hlGetzk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>
                                 </div>
                                 <p class="text-gray-600 text-sm">Video penjelasan mendalam Pentingnya Informatika dalam Kehidupan Sehari-hari.</p>
                                 <a href="https://www.youtube.com/watch?v=J768hlGetzk" target="_blank" class="block mt-4">
-                                    <button class="w-full bg-purple-500 hover:bg-purple-600 text-white py-2 px-4 rounded-md shadow-md transition duration-200">Tonton Video</button>
+                                    <button class="btn-secondary w-full">Tonton Video</button>
                                 </a>
                             </div>
                             <!-- Media Interaktif 2 (Simulasi) -->
-                            <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-4">
+                            <div class="card p-4">
                                 <h3 class="font-semibold text-lg text-gray-800 mb-2">Struktur Data Algoritma</h3>
-                                <div class="bg-gray-200 w-full h-48 flex items-center justify-center text-gray-500 rounded-md mb-4">
-                                    [Area Simulasi Interaktif]
+                                <div class="w-full h-48 bg-purple-50 rounded-lg mb-4 flex flex-col items-center justify-center text-purple-600 font-medium text-center p-4 border border-purple-200 shadow-inner">
+                                    <svg class="w-16 h-16 mb-2 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h4l2-2h3V2l-3 3-2 2H9.75zm-6.25-5a4 4 0 100-8 4 4 0 000 8zM18 10a4 4 0 100-8 4 4 0 000 8zM12 14a4 4 0 100-8 4 4 0 000 8z"></path></svg>
+                                    <p class="text-lg">Mulai simulasi interaktif untuk eksplorasi konsep!</p>
                                 </div>
                                 <p class="text-gray-600 text-sm">Simulasi interaktif untuk memahami konsep struktur data algoritma.</p>
                                 <a href="https://masawan1.github.io/Aplikasi-Interaktif-Struktur-Data-Algoritma/" target="_blank" class="block mt-4">
-                                    <button class="w-full bg-purple-500 hover:bg-purple-600 text-white py-2 px-4 rounded-md shadow-md transition duration-200">Mulai Simulasi</button>
+                                    <button class="btn-secondary w-full">Mulai Simulasi</button>
                                 </a>
                             </div>
                         </div>
@@ -242,25 +396,25 @@
                     title = 'Diskusi Kelompok';
                     description = 'Isi formulir ini untuk mengirimkan hasil diskusi kelompok Anda. File lampiran akan diunggah ke Google Drive Anda.';
                     htmlContent = `
-                        <form id="form-diskusi" class="space-y-6">
+                        <form id="form-diskusi" class="space-y-6 p-6 card">
                             <div>
                                 <label for="judul-diskusi" class="block text-sm font-medium text-gray-700 mb-1">Judul Diskusi</label>
-                                <input type="text" id="judul-diskusi" name="judulDiskusi" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Contoh: Diskusi Bab 1: Struktur Data & Algoritma" required>
+                                <input type="text" id="judul-diskusi" name="judulDiskusi" class="form-input mt-1 block w-full" placeholder="Contoh: Diskusi Bab 1: Struktur Data & Algoritma" required>
                             </div>
                             <div>
                                 <label for="anggota-kelompok" class="block text-sm font-medium text-gray-700 mb-1">Anggota Kelompok (pisahkan dengan koma)</label>
-                                <input type="text" id="anggota-kelompok" name="anggotaKelompok" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Contoh: Budi, Ani, Citra" required>
+                                <input type="text" id="anggota-kelompok" name="anggotaKelompok" class="form-input mt-1 block w-full" placeholder="Contoh: Budi, Ani, Citra" required>
                             </div>
                             <div>
                                 <label for="hasil-diskusi" class="block text-sm font-medium text-gray-700 mb-1">Hasil Diskusi Kelompok</label>
-                                <textarea id="hasil-diskusi" name="hasilDiskusi" rows="8" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Tuliskan poin-poin penting, kesimpulan, atau ringkasan diskusi Anda di sini..." required></textarea>
+                                <textarea id="hasil-diskusi" name="hasilDiskusi" rows="8" class="form-input mt-1 block w-full" placeholder="Tuliskan poin-pun penting, kesimpulan, atau ringkasan diskusi Anda di sini..." required></textarea>
                             </div>
                             <div>
                                 <label for="lampiran" class="block text-sm font-medium text-gray-700 mb-1">Lampiran (Opsional)</label>
                                 <input type="file" id="lampiran" name="lampiranFile" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
                                 <p class="mt-1 text-xs text-gray-500">Pilih file untuk diunggah ke Google Drive Anda.</p>
                             </div>
-                            <button type="submit" class="inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-200">
+                            <button type="submit" class="btn-success w-full sm:w-auto">
                                 Kirim Hasil Diskusi
                             </button>
                         </form>
@@ -278,36 +432,39 @@
                     title = 'Quiz Pembelajaran';
                     description = 'Uji pemahaman Anda dengan mengerjakan quiz.';
                     htmlContent = `
-                        <h2 class="text-2xl font-semibold text-gray-800 mb-6">Daftar Quiz</h2>
+                        <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">Daftar Quiz</h2>
                         <div id="quiz-list" class="space-y-4">
                             <!-- Quiz Item 1 -->
-                            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-center justify-between shadow-sm">
+                            <div class="card p-4 flex flex-col sm:flex-row items-center justify-between space-y-3 sm:space-y-0">
                                 <div>
                                     <h3 class="font-semibold text-lg text-blue-800">Quiz Bab 1: Dasar-dasar Struktur Data & Algoritma</h3>
                                     <p class="text-gray-700 text-sm">Batas waktu: 30 menit | Status: Belum Dikerjakan</p>
                                 </div>
-                                <button class="start-quiz-btn bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md shadow-md transition duration-200" data-quiz-id="quiz1">Mulai Quiz</button>
+                                <button class="start-quiz-btn btn-primary flex-shrink-0 w-full sm:w-auto" data-quiz-id="quiz1">Mulai Quiz</button>
                             </div>
                             <!-- Quiz Item 2 -->
-                            <div class="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center justify-between shadow-sm">
+                            <div class="card p-4 flex flex-col sm:flex-row items-center justify-between space-y-3 sm:space-y-0">
                                 <div>
                                     <h3 class="font-semibold text-lg text-green-800">Quiz Bab 2: Belum Update</h3>
                                     <p class="text-gray-700 text-sm">Batas waktu: 45 menit | Status: Belum Dikerjakan</p>
                                 </div>
-                                <button class="start-quiz-btn bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-md shadow-md transition duration-200" data-quiz-id="quiz2">Mulai Quiz</button>
+                                <button class="start-quiz-btn btn-success flex-shrink-0 w-full sm:w-auto" data-quiz-id="quiz2">Mulai Quiz</button>
                             </div>
                         </div>
 
                         <div id="quiz-container" class="mt-8 hidden">
-                            <h2 id="current-quiz-title" class="text-2xl font-semibold text-gray-800 mb-4"></h2>
-                            <div id="timer" class="text-lg font-medium text-red-600 mb-4">Waktu Tersisa: <span id="time-left"></span></div>
-                            <form id="quiz-form" class="space-y-6">
-                                <!-- Pertanyaan Quiz akan dimuat di sini -->
+                            <h2 id="current-quiz-title" class="text-2xl md:text-3xl font-bold text-gray-800 mb-4"></h2>
+                            <p id="timer" class="text-lg font-medium text-red-600 mb-4 flex items-center">
+                                <svg class="w-6 h-6 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                Waktu Tersisa: <span id="time-left" class="ml-2"></span>
+                            </p>
+                            <form id="quiz-form" class="space-y-6 p-6 card">
+                                <!-- Quiz Questions will be loaded here -->
                             </form>
-                            <button id="submit-quiz-btn" class="mt-6 inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-200">
+                            <button id="submit-quiz-btn" class="btn-secondary mt-6 w-full sm:w-auto">
                                 Selesai Quiz
                             </button>
-                            <div id="quiz-result" class="mt-4 p-4 rounded-md text-lg font-semibold hidden"></div>
+                            <div id="quiz-result" class="mt-4 p-4 rounded-md text-lg font-semibold text-center hidden"></div>
                         </div>
                     `;
                     break;
@@ -317,17 +474,17 @@
                     htmlContent = `
                         <p class="text-gray-500">Gunakan menu navigasi di sisi kiri untuk mengakses materi, diskusi, dan quiz.</p>
                         <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <div class="bg-blue-50 p-6 rounded-lg shadow-sm">
+                            <div class="card p-6">
                                 <h3 class="text-xl font-semibold text-blue-700 mb-2">Materi Terbaru</h3>
                                 <p class="text-gray-700">Infografis "Data & Algoritma" baru saja ditambahkan.</p>
                                 <button onclick="loadContent('materi')" class="mt-4 text-blue-600 hover:underline">Lihat Sekarang</button>
                             </div>
-                            <div class="bg-green-50 p-6 rounded-lg shadow-sm">
+                            <div class="card p-6">
                                 <h3 class="text-xl font-semibold text-green-700 mb-2">Quiz Mendatang</h3>
                                 <p class="text-gray-700">Quiz Bab 1 sudah bisa dikerjakan mulai tanggal 26 Juli 2025.</p>
                                 <button onclick="loadContent('quiz')" class="mt-4 text-green-600 hover:underline">Detail</button>
                             </div>
-                            <div class="bg-purple-50 p-6 rounded-lg shadow-sm">
+                            <div class="card p-6">
                                 <h3 class="text-xl font-semibold text-purple-700 mb-2">Pengumuman</h3>
                                 <p class="text-gray-700">aktif dalam diskusi kelompok menjadi nilai tambah.</p>
                                 <button onclick="loadContent('diskusi')" class="mt-4 text-purple-600 hover:underline">Baca Selengkapnya</button>
@@ -337,42 +494,42 @@
                     break;
             }
 
-            contentTitle.textContent = title;
+            contentTitle.innerHTML = `<svg class="w-8 h-8 mr-3 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>${title}`;
             contentDescription.textContent = description;
             contentArea.innerHTML = htmlContent;
 
-            // Tambahkan event listener setelah konten dimuat
+            // Add event listeners after content is loaded
             if (menuId === 'diskusi') {
                 const formDiskusi = document.getElementById('form-diskusi');
                 const diskusiMessage = document.getElementById('diskusi-message');
                 const loadingSpinner = document.getElementById('loading-spinner');
 
                 formDiskusi.addEventListener('submit', async (e) => {
-                    e.preventDefault(); // Mencegah refresh halaman
-                    diskusiMessage.classList.add('hidden'); // Sembunyikan pesan sebelumnya
-                    loadingSpinner.classList.remove('hidden'); // Tampilkan spinner
+                    e.preventDefault(); // Prevent page refresh
+                    diskusiMessage.classList.add('hidden'); // Hide previous message
+                    loadingSpinner.classList.remove('hidden'); // Show spinner
 
-                    // Buat objek FormData dari formulir
-                    // Ini akan secara otomatis mengumpulkan semua input, termasuk file
+                    // Create FormData object from the form
+                    // This will automatically collect all inputs, including files
                     const formData = new FormData(formDiskusi);
 
                     try {
                         const response = await fetch(appsScriptWebAppLink, {
                             method: 'POST',
-                            // PENTING: JANGAN SETEL HEADERS SECARA MANUAL UNTUK FormData!
-                            // Browser akan otomatis mengatur Content-Type: multipart/form-data
-                            body: formData, // Mengirim objek FormData langsung
+                            // IMPORTANT: DO NOT MANUALLY SET HEADERS FOR FormData!
+                            // The browser will automatically set Content-Type: multipart/form-data
+                            body: formData, // Send FormData object directly
                         });
 
                         const result = await response.json();
 
-                        loadingSpinner.classList.add('hidden'); // Sembunyikan spinner
+                        loadingSpinner.classList.add('hidden'); // Hide spinner
 
                         diskusiMessage.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-green-100', 'text-green-700');
                         if (result.success) {
                             diskusiMessage.classList.add('bg-green-100', 'text-green-700');
                             diskusiMessage.textContent = result.message;
-                            formDiskusi.reset(); // Reset form setelah sukses
+                            formDiskusi.reset(); // Reset form after success
                         } else {
                             diskusiMessage.classList.add('bg-red-100', 'text-red-700');
                             diskusiMessage.textContent = result.message;
@@ -380,10 +537,10 @@
 
                         setTimeout(() => {
                             diskusiMessage.classList.add('hidden');
-                        }, 5000); // Sembunyikan pesan setelah 5 detik
+                        }, 5000); // Hide message after 5 seconds
 
                     } catch (error) {
-                        loadingSpinner.classList.add('hidden'); // Sembunyikan spinner
+                        loadingSpinner.classList.add('hidden'); // Hide spinner
                         diskusiMessage.classList.remove('hidden', 'bg-green-100', 'text-green-700');
                         diskusiMessage.classList.add('bg-red-100', 'text-red-700');
                         diskusiMessage.textContent = 'Terjadi kesalahan jaringan atau server: ' + error.message;
@@ -429,9 +586,9 @@
                         timeLimit: 45 * 60, // 45 minutes in seconds
                         questions: [
                             {
-                                question: 'Belum Update 1?',
-                                options: ['a', 'b', 'c', 'd'],
-                                answer: 'b'
+                                question: 'Ini adalah pertanyaan contoh untuk Quiz Bab 2. Apa warna langit?',
+                                options: ['Merah', 'Hijau', 'Biru', 'Kuning', 'Ungu'],
+                                answer: 'Biru'
                             },
                             {
                                 question: 'Belum Update 2?',
@@ -459,16 +616,22 @@
                         quizForm.innerHTML = ''; // Clear previous questions
                         clearInterval(timerInterval); // Clear any existing timer
 
+                        // Reset button states
+                        submitQuizBtn.disabled = false;
+                        submitQuizBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+
+
                         // Render questions
                         quizData.questions.forEach((q, index) => {
                             const questionHtml = `
-                                <div class="mb-4 p-4 border border-gray-200 rounded-md bg-gray-50">
-                                    <p class="font-medium text-gray-800 mb-2">Q${index + 1}: ${q.question}</p>
-                                    <div class="space-y-2">
-                                        ${q.options.map(option => `
-                                            <label class="inline-flex items-center">
-                                                <input type="radio" class="form-radio h-4 w-4 text-blue-600" name="question${index}" value="${option}">
-                                                <span class="ml-2 text-gray-700">${option}</span>
+                                <div class="mb-6 p-5 border border-gray-200 rounded-lg bg-gray-50 shadow-sm">
+                                    <p class="font-bold text-lg text-gray-800 mb-3">Q${index + 1}: ${q.question}</p>
+                                    <div class="space-y-3">
+                                        ${q.options.map((option, optIndex) => `
+                                            <label class="quiz-option-label">
+                                                <input type="radio" name="question${index}" value="${option}">
+                                                <span class="quiz-option-letter">${String.fromCharCode(97 + optIndex).toUpperCase()}</span>
+                                                <span class="quiz-option-text">${option}</span>
                                             </label>
                                         `).join('')}
                                     </div>
@@ -520,28 +683,40 @@
 
                     if (percentage >= 70) { // Example pass mark
                         quizResult.classList.add('bg-green-100', 'text-green-700');
-                        quizResult.textContent = `Selamat! Anda lulus dengan skor ${score}/${totalQuestions} (${percentage.toFixed(2)}%).`;
+                        quizResult.innerHTML = `Selamat! Anda lulus dengan skor <span class="font-extrabold">${score}/${totalQuestions}</span> (<span class="font-extrabold">${percentage.toFixed(2)}%</span>). 🎉`;
                     } else {
                         quizResult.classList.add('bg-red-100', 'text-red-700');
-                        quizResult.textContent = `Maaf, Anda belum lulus. Skor Anda ${score}/${totalQuestions} (${percentage.toFixed(2)}%). Coba lagi!`;
+                        quizResult.innerHTML = `Maaf, Anda belum lulus. Skor Anda <span class="font-extrabold">${score}/${totalQuestions}</span> (<span class="font-extrabold">${percentage.toFixed(2)}%</span>). Coba lagi! 😢`;
                     }
 
                     // Disable form and button after submission
                     const quizInputs = quizForm.querySelectorAll('input, button');
                     quizInputs.forEach(input => input.disabled = true);
                     submitQuizBtn.disabled = true;
+                    submitQuizBtn.classList.add('opacity-50', 'cursor-not-allowed');
+
+                    // Add a button to go back to quiz list
+                    const backToQuizListBtn = document.createElement('button');
+                    backToQuizListBtn.textContent = 'Kembali ke Daftar Quiz';
+                    backToQuizListBtn.className = 'btn-primary mt-6 w-full sm:w-auto';
+                    backToQuizListBtn.onclick = () => {
+                        quizContainer.classList.add('hidden');
+                        quizList.classList.remove('hidden');
+                        quizResult.classList.add('hidden'); // Hide result when going back to list
+                    };
+                    quizResult.after(backToQuizListBtn);
                 }
             }
         }
 
-        // Event Listeners untuk menu navigasi
+        // Event Listeners for navigation menu
         menuMateri.addEventListener('click', () => loadContent('materi'));
         menuDiskusi.addEventListener('click', () => loadContent('diskusi'));
         menuQuiz.addEventListener('click', () => loadContent('quiz'));
 
-        // Muat konten default saat halaman pertama kali dimuat
+        // Load default content when the page first loads
         document.addEventListener('DOMContentLoaded', () => {
-            loadContent('home'); // Memuat halaman selamat datang
+            loadContent('home'); // Load the welcome page
         });
     </script>
 </body>
