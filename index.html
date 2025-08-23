@@ -13,7 +13,7 @@
             font-family: 'Inter', sans-serif;
             background-color: #f8fafc; /* Very light blue-gray background */
             color: #334155; /* Darker text for better readability */
-            overflow: hidden; /* Prevent scroll when sidebar is open */
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
         /* Custom scrollbar for better aesthetics */
         ::-webkit-scrollbar {
@@ -189,7 +189,7 @@
 
     <!-- Sidebar Navigation -->
     <aside id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-gradient-to-br from-blue-600 to-blue-800 text-white p-6 flex flex-col shadow-lg
-                         transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out z-50">
+                             transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out z-50">
         <div class="flex justify-between items-center mb-8">
             <div class="text-3xl font-extrabold text-blue-200 text-center flex-grow">
                 Mr. Cloud
@@ -347,7 +347,7 @@
                     htmlContent = `
                         <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">Infografis</h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-                            <!-- Infografis 1 -->
+                            <!-- Infografis 1: Data & Algoritma -->
                             <div class="card p-4">
                                 <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEieMXSqYTZU91PNdSd7Kedwuw5hqmkYWQX_Wz4w2kf5jUt_kMB2uN7C47_VtjCibkLpB852362dPYGpTBdn4RdxuOHf08haWSYH55-OEzVuPr4edsNfpUoFv8CQCUhNxY4ajIhFrRCnLQ495zjHrZLhFUaBSK0lfcRS0kxtOtPgg2RHt2-VpC2ddMNs5cQ/s1536/ChatGPT%20Image%20Jul%2026,%202025,%2001_30_24%20PM.png" onerror="this.onerror=null;this.src='https://placehold.co/400x250/FEEBCB/9C4221?text=Infografis+1';" alt="Infografis 1" class="w-full h-48 object-cover rounded-lg mb-4">
                                 <div class="p-2">
@@ -358,7 +358,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <!-- Infografis 2 -->
+                            <!-- Infografis 2: Komputasi Evolusi -->
                             <div class="card p-4">
                                 <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgt41MZTssFrJI9gKD9nfEE7yEnwtzK69GHdl8a3M9TPxg2YLlLz8auZefwUpFFGMWquLUGJApnI9cskGSiD06dV1jstcEft8c2_Hc7XzEUZ0sKD1lwQlVhnvkDN6yuXjniIvOoU2A-AmsisGm4yDtpyNZFpEBaiFL6UgZsaqqaAijvugCTkVwU11vrLDw/s1536/ChatGPT%20Image%20Aug%203,%202025,%2003_15_50%20PM.png" onerror="this.onerror=null;this.src='https://placehold.co/400x250/D1FAE5/065F46?text=Infografis+2';" alt="Infografis 2" class="w-full h-48 object-cover rounded-lg mb-4">
                                 <div class="p-2">
@@ -369,27 +369,27 @@
                                     </a>
                                 </div>
                             </div>
-                            <!-- Infografis 3 -->
+                            <!-- Infografis 3: Jelajahi Dunia Informatika -->
                             <div class="card p-4">
                                 <img src="https://blogger.googleusercontent.com/img/a/AVvXsEh2MB1HnsKID7uFMpzhVUc72orp-rJ9iASLIUZfHjDBHQHmCeFIO2HzIdTsyuXOuZzzEBrBMmpqtFWVQYV2EYTbbmbMhwfMJoFRV-OzprgnMP0BgrVQojH71if4CVR9J9KFf8UonnQulmzcXx9wnzFRD-pH0Gi2U1pmACyGXjugbOyycLj6oQEt3G_09zM" onerror="this.onerror=null;this.src='https://placehold.co/400x250/FEEBCB/9C4221?text=Infografis+3';" alt="Infografis 3" class="w-full h-48 object-cover rounded-lg mb-4">
                                 <div class="p-2">
-                                    <h3 class="font-semibold text-lg text-gray-800 mb-2">Jelajahi Dunia Informatika.</h3>
+                                    <h3 class="font-semibold text-lg text-gray-800 mb-2">Jelajahi Dunia Informatika</h3>
                                     <p class="text-gray-600 text-sm">Panduan Keterampilan Digital Esensial untuk Siswa Kelas X SMK.</p>
                                     <a href="https://masawan1.github.io/Jelajahi-Dunia-Informatika/" target="_blank" class="block mt-4">
                                         <button class="btn-primary w-full">Lihat Infografis</button>
                                     </a>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Infografis 4 -->
-                        <div class="card p-4">
-                            <img src="https://placehold.co/400x250/FEEBCB/9C4221?text=Infografis+4" onerror="this.onerror=null;this.src='https://placehold.co/400x250/FEEBCB/9C4221?text=Infografis+4';" alt="Infografis 4" class="w-full h-48 object-cover rounded-lg mb-4">
-                            <div class="p-2">
-                                <h3 class="font-semibold text-lg text-gray-800 mb-2">Belum Update</h3>
-                                <p class="text-gray-600 text-sm">Waiting Update.</p>
-                                <a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwj1q_L-t6qGAxW8SWwGHd2gAbEQFnoECB0QAQ&url=https%3A%2F%2Fid.wikipedia.org%2Fwiki%2FEnergi&usg=AOvVaw2J2J2J2J2J2J2J2J2J2J2J2J2J" target="_blank" class="block mt-4">
-                                    <button class="btn-primary w-full">Lihat Infografis</button>
-                                </a>
+                            <!-- Infografis 4: Struktur Data Lanjut -->
+                            <div class="card p-4">
+                                <img src="https://placehold.co/400x250/E9D8FD/5C2E91?text=Infografis+4" onerror="this.onerror=null;this.src='https://placehold.co/400x250/E9D8FD/5C2E91?text=Infografis+4';" alt="Infografis 4" class="w-full h-48 object-cover rounded-lg mb-4">
+                                <div class="p-2">
+                                    <h3 class="font-semibold text-lg text-gray-800 mb-2">Struktur Data Lanjut</h3>
+                                    <p class="text-gray-600 text-sm">Membahas konsep lanjutan seperti graph dan tree.</p>
+                                    <a href="#" target="_blank" class="block mt-4">
+                                        <button class="btn-primary w-full">Lihat Infografis</button>
+                                    </a>
+                                </div>
                             </div>
                         </div>
 
