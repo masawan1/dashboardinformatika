@@ -61,8 +61,13 @@
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
         .card:hover {
-            transform: translateY(-8px); /* More pronounced lift effect on hover */
-            box-shadow: 0 25px 40px -8px rgba(0, 0, 0, 0.15), 0 12px 20px -6px rgba(0, 0, 0, 0.08);
+            transform: translateY(-4px); /* Slightly less pronounced lift to avoid clash with other effects */
+            box-shadow: 0 18px 35px -7px rgba(0, 0, 0, 0.12), 0 8px 15px -4px rgba(0, 0, 0, 0.08);
+        }
+        /* Specific card hover for static info cards */
+        .card.info-card:hover {
+            transform: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
         /* Primary Button Style (Blue) */
@@ -113,7 +118,7 @@
             box-shadow: 0 6px 15px rgba(5, 150, 105, 0.4);
         }
 
-        /* Quiz/Games specific styles */
+        /* Quiz/Games specific styles - Kept for reference, though unused for external link */
         .quiz-option-label {
             display: flex;
             align-items: center;
@@ -124,15 +129,6 @@
             background-color: #fdfdfd; /* Very light background */
             transition: all 0.2s ease-in-out;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        .quiz-option-label:hover {
-            background-color: #f3f4f6; /* Slightly darker on hover */
-            border-color: #a78bfa; /* Purple border on hover */
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .quiz-option-label input[type="radio"] {
-            display: none; /* Hide default radio button */
         }
         .quiz-option-letter {
             width: 2.25rem; /* Fixed width for letter circle */
@@ -149,22 +145,7 @@
             flex-shrink: 0;
             transition: all 0.2s ease-in-out;
         }
-        .quiz-option-label input[type="radio"]:checked + .quiz-option-letter {
-            background-color: #a78bfa; /* Purple background when checked */
-            color: white; /* White text when checked */
-            border-color: #a78bfa; /* Purple border when checked */
-            box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.3); /* Glow effect */
-        }
-        .quiz-option-label input[type="radio"]:checked + .quiz-option-letter + .quiz-option-text {
-            color: #6d28d9; /* Darker purple text for selected option */
-            font-weight: 700;
-        }
-        .quiz-option-text {
-            flex-grow: 1;
-            color: #4b5563; /* Gray text */
-            font-size: 1.05rem; /* Slightly larger text */
-        }
-
+        
         /* Form input styles */
         .form-input {
             padding: 0.75rem 1rem;
@@ -202,8 +183,9 @@
         <nav class="flex-1 overflow-y-auto">
             <ul>
                 <li class="mb-4">
+                    <!-- Updated Icon: Document/File for Materi -->
                     <button id="menu-materi" class="sidebar-link w-full text-left py-3 px-4 rounded-lg flex items-center space-x-3 focus:outline-none focus:ring-2 focus-ring-blue-400">
-                        <svg class="w-6 h-6 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13.48m0-13.48a4.5 4.5 0 010-9 4.5 4.5 0 010 9m0 13.48a4.5 4.5 0 010-9 4.5 4.5 0 010 9m0 0V9.5a4.5 4.5 0 00-4.5 4.5v1.5m4.5-6.5a4.5 4.5 0 00-4.5 4.5v1.5m4.5-6.5a4.5 4.5 0 004.5 4.5v1.5m-4.5-6.5a4.5 4.5 0 004.5 4.5v1.5"></path></svg>
+                        <svg class="w-6 h-6 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                         <span class="text-lg font-medium">Materi</span>
                     </button>
                 </li>
@@ -214,20 +196,25 @@
                     </button>
                 </li>
                 <li class="mb-4">
-                    <!-- Updated menu item from 'Quiz' to 'Games' -->
+                    <!-- Menu Item: Latihan Soal - Now configured to open an external link -->
+                    <button id="menu-latihan" class="sidebar-link w-full text-left py-3 px-4 rounded-lg flex items-center space-x-3 focus:outline-none focus:ring-2 focus-ring-blue-400">
+                        <svg class="w-6 h-6 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                        <span class="text-lg font-medium">Latihan Soal</span>
+                    </button>
+                </li>
+                <li class="mb-4">
                     <button id="menu-games" class="sidebar-link w-full text-left py-3 px-4 rounded-lg flex items-center space-x-3 focus:outline-none focus:ring-2 focus-ring-blue-400">
                         <svg class="w-6 h-6 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c1.333-1.667 3.333-1.667 4.667 0a3.333 3.333 0 014.666 0c1.334 1.667 1.334 3.333 0 5-1.334 1.667-3.334 1.667-4.667 0a3.333 3.333 0 01-4.666 0zM12 8c-1.333-1.667-3.333-1.667-4.667 0a3.333 3.333 0 00-4.666 0c-1.334 1.667-1.334 3.333 0 5 1.334 1.667 3.334 1.667 4.667 0a3.333 3.333 0 004.666 0z"></path></svg>
                         <span class="text-lg font-medium">Games</span>
                     </button>
                 </li>
-                <!-- START NEW: Storybook menu item -->
                 <li class="mb-4">
+                    <!-- Icon: Complex/Abstract for Storybook -->
                     <button id="menu-storybook" class="sidebar-link w-full text-left py-3 px-4 rounded-lg flex items-center space-x-3 focus:outline-none focus:ring-2 focus-ring-blue-400">
                         <svg class="w-6 h-6 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13.48m0-13.48a4.5 4.5 0 010-9 4.5 4.5 0 010 9m0 13.48a4.5 4.5 0 010-9 4.5 4.5 0 010 9m0 0V9.5a4.5 4.5 0 00-4.5 4.5v1.5m4.5-6.5a4.5 4.5 0 00-4.5 4.5v1.5m4.5-6.5a4.5 4.5 0 004.5 4.5v1.5m-4.5-6.5a4.5 4.5 0 004.5 4.5v1.5"></path></svg>
                         <span class="text-lg font-medium">Storybook</span>
                     </button>
                 </li>
-                <!-- END NEW -->
             </ul>
         </nav>
         <div class="mt-auto text-sm text-center text-blue-200">
@@ -256,29 +243,34 @@
                 <!-- Content will be loaded here by JavaScript -->
                 <p class="text-gray-500">Gunakan menu navigasi di sisi kiri untuk mengakses materi, diskusi, dan games.</p>
                 <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Example Info Cards -->
-                    <div class="bg-blue-50 p-6 rounded-lg shadow-sm">
+                    <!-- Example Info Cards (Updated to use card class) -->
+                    <div class="card info-card bg-blue-50 p-6 rounded-lg shadow-sm">
                         <h3 class="text-xl font-semibold text-blue-700 mb-2">Materi Terbaru</h3>
                         <p class="text-gray-700">Infografis "Jelajahi Dunia Informatika" baru saja ditambahkan.</p>
                         <button onclick="loadContent('materi')" class="mt-4 text-blue-600 hover:underline">Lihat Sekarang</button>
                     </div>
-                    <div class="bg-green-50 p-6 rounded-lg shadow-sm">
+                    <div class="card info-card bg-green-50 p-6 rounded-lg shadow-sm">
                         <h3 class="text-xl font-semibold text-green-700 mb-2">Games Terbaru</h3>
                         <p class="text-gray-700">Games ular tangga sudah bisa dimainkan.</p>
                         <button onclick="loadContent('games')" class="mt-4 text-green-600 hover:underline">Detail</button>
                     </div>
-                    <div class="bg-purple-50 p-6 rounded-lg shadow-sm">
+                    <div class="card info-card bg-purple-50 p-6 rounded-lg shadow-sm">
                         <h3 class="text-xl font-semibold text-purple-700 mb-2">Pengumuman</h3>
                         <p class="text-gray-700">aktif dalam diskusi kelompok menjadi nilai tambah.</p>
                         <button onclick="loadContent('diskusi')" class="mt-4 text-purple-600 hover:underline">Baca Selengkapnya</button>
                     </div>
-                     <!-- START NEW: Card for Storybook -->
-                    <div class="bg-yellow-50 p-6 rounded-lg shadow-sm">
+                    <!-- Card for Latihan Soal -->
+                    <div class="card info-card bg-red-50 p-6 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-semibold text-red-700 mb-2">Uji Pemahaman</h3>
+                        <p class="text-gray-700">Coba tantangan kuis interaktif di menu Latihan Soal.</p>
+                        <button onclick="loadContent('latihan')" class="mt-4 text-red-600 hover:underline">Mulai Latihan</button>
+                    </div>
+                    <!-- Card for Storybook -->
+                    <div class="card info-card bg-yellow-50 p-6 rounded-lg shadow-sm">
                         <h3 class="text-xl font-semibold text-yellow-700 mb-2">Komponen Pembelajaran</h3>
                         <p class="text-gray-700">Lihat seluruh komponen UI dan fitur interaktif di Storybook.</p>
                         <button onclick="loadContent('storybook')" class="mt-4 text-yellow-600 hover:underline">Lihat Storybook</button>
                     </div>
-                    <!-- END NEW -->
                 </div>
             </div>
         </main>
@@ -288,10 +280,9 @@
         // Get DOM elements
         const menuMateri = document.getElementById('menu-materi');
         const menuDiskusi = document.getElementById('menu-diskusi');
-        const menuGames = document.getElementById('menu-games'); // Updated ID
-        // START NEW: Get new menu item element
+        const menuLatihan = document.getElementById('menu-latihan'); 
+        const menuGames = document.getElementById('menu-games');
         const menuStorybook = document.getElementById('menu-storybook');
-        // END NEW
 
         const contentTitle = document.getElementById('content-title');
         const contentDescription = document.getElementById('content-description');
@@ -305,6 +296,10 @@
 
         // YOUR GOOGLE APPS SCRIPT WEB APP URL
         const appsScriptWebAppLink = 'https://script.google.com/macros/s/AKfycbyzWlJo_dPugZbocyOIG_cXxQ8FNqTbCs3r7dpR33B0pVBAjLrBYKHC8dtibEXVTQoe-w/exec';
+
+        // --- NEW CONFIGURATION FOR EXTERNAL LINK ---
+        const externalQuizUrl = 'https://quizizz.com/join/quiz/66474136eb9cc8b73a3d5b0a/start?studentScreen=true';
+        // ------------------------------------------
 
         // Function to open sidebar
         function openSidebar() {
@@ -329,6 +324,17 @@
                 closeSidebar(); // Ensure sidebar is closed in mobile view when switching to desktop
             }
         });
+
+        // Function to handle opening external quiz link
+        function openExternalQuiz() {
+            // Close sidebar if necessary
+            if (window.innerWidth < 768) {
+                closeSidebar();
+            }
+            // Open the external URL in a new tab
+            window.open(externalQuizUrl, '_blank');
+        }
+
 
         // Function to load content
         function loadContent(menuId) {
@@ -363,7 +369,7 @@
                             <div class="card p-4">
                                 <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgt41MZTssFrJI9gKD9nfEE7yEnwtzK69GHdl8a3M9TPxg2YLlLz8auZefwUpFFGMWquLUGJApnI9cskGSiD06dV1jstcEft8c1_Hc7XzEUZ0sKD1lwQlVhnvkDN6yuXjniIvOoU2A-AmsisGm4yDtpyNZFpEBaiFL6UgZsaqqaAijvugCTkVwU11vrLDw/s1536/ChatGPT%20Image%20Aug%203,%202025,%2003_15_50%20PM.png" onerror="this.onerror=null;this.src='https://placehold.co/400x250/D1FAE5/065F46?text=Infografis+2';" alt="Infografis 2" class="w-full h-48 object-cover rounded-lg mb-4">
                                 <div class="p-2">
-                                    <h3 class="font-semibold text-lg text-gray-800 mb-2">Komputasi Evolusi</h3>
+                                    <h3 class="font-semibold text-lg text-gray-800 mb-2">Komputasi Evolusi </h3>
                                     <p class="text-gray-600 text-sm">Ikhtisar visual tentang praktik komputasi, algoritma, struktur data, dan arsitektur dasar komputer.</p>
                                     <a href="https://masawan1.github.io/komputasi-evolusi/" target="_blank" class="block mt-4">
                                         <button class="btn-primary w-full">Lihat Infografis</button>
@@ -480,6 +486,31 @@
                         </div>
                     `;
                     break;
+                case 'latihan': 
+                    // UPDATED CONTENT: Direct link to external website
+                    title = 'Latihan Soal Eksternal';
+                    description = 'Uji pemahaman Anda di platform eksternal favorit kami.';
+                    htmlContent = `
+                        <div class="max-w-xl mx-auto space-y-8 text-center p-8 card">
+                            <svg class="w-16 h-16 text-red-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <h2 class="text-3xl font-extrabold text-gray-800">Siap Menguji Pengetahuan Anda?</h2>
+                            <p class="text-lg text-gray-600">
+                                Kami telah mengarahkan Anda ke platform kuis interaktif **Quizizz** untuk memulai latihan soal.
+                                Tekan tombol di bawah ini untuk melanjutkan ke website eksternal.
+                            </p>
+                            
+                            <a href="${https://masawan1.github.io/ujian-app/index.html}" target="_blank" class="block">
+                                <button class="btn-secondary w-full">
+                                    <span class="flex items-center justify-center space-x-2">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                        <span>Mulai Latihan di Quizizz</span>
+                                    </span>
+                                </button>
+                            </a>
+                            <p class="text-sm text-gray-400 mt-4">Tautan akan terbuka di tab baru.</p>
+                        </div>
+                    `;
+                    break; // END UPDATED CASE: Latihan Soal
                 case 'games':
                     // Updated content for the 'Games' menu
                     title = 'Games Interaktif';
@@ -510,7 +541,7 @@
                             <!-- Games Item 3: Monopoly Cara Kerja Komputer -->
                             <div class="card p-4 flex flex-col sm:flex-row items-center justify-between space-y-3 sm:space-y-0">
                                 <div class="flex-grow">
-                                    <h3 class="font-semibold text-lg text-Brown-800">Monopoly Cara Kerja Komputer</h3>
+                                    <h3 class="font-semibold text-lg text-gray-800">Monopoly Cara Kerja Komputer</h3>
                                     <p class="text-gray-700 text-sm">Kelas: X-PSPT, X-TSM 1, X-TSM 2</p>
                                 </div>
                                 <a href="https://masawan1.github.io/Monopoly-Cara-Kerja-Komputer/" target="_blank" class="flex-shrink-0 w-full sm:w-auto">
@@ -537,11 +568,9 @@
                                     <button class="btn-secondary w-full sm:w-auto">Mainkan</button>
                                 </a>
                             </div>
-                            <!-- Add more games here -->
                         </div>
                     `;
                     break;
-                // START NEW: New case for Storybook menu with a list of cards
                 case 'storybook':
                     title = 'Storybook';
                     description = 'Jelajahi komponen UI dan fitur interaktif yang tersedia.';
@@ -584,35 +613,37 @@
                         </div>
                     `;
                     break;
-                // END NEW
                 default:
                     title = 'Selamat Datang di Dashboard Pembelajaran!';
                     description = 'Pilih menu di samping untuk memulai.';
                     htmlContent = `
                         <p class="text-gray-500">Gunakan menu navigasi di sisi kiri untuk mengakses materi, diskusi, dan games.</p>
                         <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <div class="card p-6">
+                            <div class="card info-card p-6">
                                 <h3 class="text-xl font-semibold text-blue-700 mb-2">Materi Terbaru</h3>
                                 <p class="text-gray-700">Infografis "Data & Algoritma" baru saja ditambahkan.</p>
                                 <button onclick="loadContent('materi')" class="mt-4 text-blue-600 hover:underline">Lihat Sekarang</button>
                             </div>
-                            <div class="card p-6">
+                            <div class="card info-card p-6">
+                                <h3 class="text-xl font-semibold text-red-700 mb-2">Uji Pemahaman</h3>
+                                <p class="text-gray-700">Coba tantangan kuis interaktif di menu Latihan Soal.</p>
+                                <button onclick="loadContent('latihan')" class="mt-4 text-red-600 hover:underline">Mulai Latihan</button>
+                            </div>
+                            <div class="card info-card p-6">
                                 <h3 class="text-xl font-semibold text-green-700 mb-2">Games Terbaru</h3>
                                 <p class="text-gray-700">Games ular tangga sudah bisa dimainkan.</p>
                                 <button onclick="loadContent('games')" class="mt-4 text-green-600 hover:underline">Detail</button>
                             </div>
-                            <div class="card p-6">
-                                <h3 class="text-xl font-semibold text-purple-700 mb-2">Pengumuman</h3>
-                                <p class="text-gray-700">aktif dalam diskusi kelompok menjadi nilai tambah.</p>
-                                <button onclick="loadContent('diskusi')" class="mt-4 text-purple-600 hover:underline">Baca Selengkapnya</button>
-                            </div>
-                            <!-- START NEW: Card for Storybook on Home page -->
-                            <div class="bg-yellow-50 p-6 rounded-lg shadow-sm">
+                            <div class="card info-card bg-yellow-50 p-6 rounded-lg shadow-sm">
                                 <h3 class="text-xl font-semibold text-yellow-700 mb-2">Komponen Pembelajaran</h3>
                                 <p class="text-gray-700">Lihat seluruh komponen UI dan fitur interaktif di Storybook.</p>
                                 <button onclick="loadContent('storybook')" class="mt-4 text-yellow-600 hover:underline">Lihat Storybook</button>
                             </div>
-                            <!-- END NEW -->
+                            <div class="card info-card bg-purple-50 p-6 rounded-lg shadow-sm">
+                                <h3 class="text-xl font-semibold text-purple-700 mb-2">Pengumuman</h3>
+                                <p class="text-gray-700">aktif dalam diskusi kelompok menjadi nilai tambah.</p>
+                                <button onclick="loadContent('diskusi')" class="mt-4 text-purple-600 hover:underline">Baca Selengkapnya</button>
+                            </div>
                         </div>
                     `;
                     break;
@@ -633,15 +664,11 @@
                     diskusiMessage.classList.add('hidden'); // Hide previous message
                     loadingSpinner.classList.remove('hidden'); // Show spinner
 
-                    // Create FormData object from the form
-                    // This will automatically collect all inputs, including files
                     const formData = new FormData(formDiskusi);
 
                     try {
                         const response = await fetch(appsScriptWebAppLink, {
                             method: 'POST',
-                            // IMPORTANT: DO NOT MANUALLY SET HEADERS FOR FormData!
-                            // The browser will automatically set Content-Type: multipart/form-data
                             body: formData, // Send FormData object directly
                         });
 
@@ -673,16 +700,19 @@
                         }, 5000);
                     }
                 });
+            } else if (menuId === 'latihan') {
+                 // Automatically trigger the external link when 'latihan' menu is clicked
+                 openExternalQuiz();
             }
         }
 
         // Event Listeners for navigation menu
         menuMateri.addEventListener('click', () => loadContent('materi'));
         menuDiskusi.addEventListener('click', () => loadContent('diskusi'));
-        menuGames.addEventListener('click', () => loadContent('games')); // Updated event listener
-        // START NEW: Add event listener for the new menu item
+        // UPDATED: When the Latihan menu button is clicked, open the external link directly
+        menuLatihan.addEventListener('click', openExternalQuiz); 
+        menuGames.addEventListener('click', () => loadContent('games'));
         menuStorybook.addEventListener('click', () => loadContent('storybook'));
-        // END NEW
 
         // Load default content when the page first loads
         document.addEventListener('DOMContentLoaded', () => {
